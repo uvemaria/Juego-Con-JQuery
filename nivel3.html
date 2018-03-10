@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MARIO CONTRA TODOS</title>
+    <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+    <link rel="stylesheet" href="js/jquery-ui-1.11.4/jquery-ui.css">
+    <style type="text/css">
+        
+        @font-face {
+            font-family:"Super Mario Bros.";
+            src: url('fuente/SuperMarioBros.ttf');
+        }
+
+        body{
+            background-image: url('fondo.jpg');
+        }
+        #paredArriba{
+             position: absolute;
+             /*border:1px solid black;*/
+             width: 1080px;
+             height: 10px;
+         }
+        #paredAbajo{
+            position: absolute;
+            top:588px;
+            /*border:1px solid black;*/
+            width: 1090px;
+            height: 10px;
+        }
+
+        #obstaculo1{
+            position: absolute;
+            /*border:1px solid black;*/
+            width: 10px;
+            height: 100px;
+            left: 200px;
+        }
+
+        #obstaculo2{
+            position: absolute;
+            /*border:1px solid black;*/
+            width: 10px;
+            height: 200px;
+            left: 900px;
+            top:388px;
+        }
+
+        #obstaculo3{
+            position: absolute;
+            /*border:1px solid black;*/
+            width: 195px;
+            height: 10px;
+            left: 900px;
+            top:288px;
+        }
+
+        #obstaculo4{
+            position: absolute;
+            left: 500px;
+            top:268px;
+            width: 100px;
+            height: 110px;
+            background-size: cover;
+            background-image: url('imagenes/piedra.png');
+        }
+
+        #obstaculo5{
+            position: absolute;
+            left: 800px;
+            top:140px;
+            width: 100px;
+            height: 110px;
+            background-size: cover;
+            background-image: url('imagenes/piedra.png');
+        }
+
+        #obstaculo6{
+            position: absolute;
+            left: 150px;
+            top:400px;
+            width: 100px;
+            height: 110px;
+            background-size: cover;
+            background-image: url('imagenes/piedra.png');
+        }
+
+        #paredIzquierda{
+            position: absolute;
+            /*border:1px solid black;*/
+            width: 10px;
+            height: 580px;
+        }
+        #paredDerecha{
+            position: absolute;
+            /*border:1px solid black;*/
+            width: 10px;
+            top:8px;
+            left:1088px;
+            height: 520px;
+        }
+        #paredDerechaSalida{
+            position: absolute;
+            top:548px;
+            /*background-color: black;*/
+            left:1093px;
+            width: 5px;
+            height: 2px;
+        }
+        #paredSalida{
+            position: absolute;
+            top:525px;
+            left:1098px;
+            height: 70px;
+            width: 10px;
+        }
+        #salida{
+            position: absolute;
+            top:500px;
+            left:1091px;
+            height: 72px;
+            width: 7px;
+        }
+        #textoSalida{
+            position: absolute;
+            width: 160px;
+            top:540px;
+            left:1100px;
+            font-family: "Super Mario Bros.",sans-serif;
+            font-weight: bolder;
+            font-size: 40px;
+            background-color: aliceblue;
+        }
+        #pj{
+            top: 35px;
+            left: 35px;
+            width: 42px;
+            height: 60px;
+            position: absolute;
+            background-image: url("imagenes/stop/mario-parado.png");
+            background-size: cover;
+        }
+        #enemigo{
+            top: 40px;
+            left: 600px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_izq.png");
+            background-size: cover;
+        }
+        #enemigo2{
+            top: 400px;
+            left: 800px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_down.png");
+            background-size: cover;
+        }
+        #enemigo3{
+            top: 520px;
+            left: 210px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_der.png");
+            background-size: cover;
+        }
+		
+        #enemigo4{
+            top: 50px;
+            left: 200px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_izq.png");
+            background-size: cover;
+        }
+        #enemigo5{
+            top: 400px;
+            left: 400px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_down.png");
+            background-size: cover;
+        }
+        #enemigo6{
+            top: 520px;
+            left: 610px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_der.png");
+            background-size: cover;
+        }
+		
+		#enemigo7{
+            top: 320px;
+            left: 910px;
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            /*margin: 20px;*/
+            background-image: url("imagenes/enemigos/enemigo1_der.png");
+            background-size: cover;
+        }
+
+        .hearts{
+            background-image: url("imagenes/corazon.png");
+            background-size: cover;
+            width: 72px;
+            height: 64px;
+        }
+        #heart1{
+            position: absolute;
+            /*left:1100px;*/
+            /*top:35px;*/
+            left:1130px;
+            top:40px;
+        }
+        #heart2{
+            position: absolute;
+            /*left:1178px;*/
+            /*top:35px;*/
+            left:1130px;
+            top:113px;
+        }
+        #heart3{
+            position: absolute;
+            /*left:1256px;*/
+            /*top:35px;*/
+            left:1130px;
+            top:185px;
+        }
+
+        #heart4{
+            position: absolute;
+            /*left:1256px;*/
+            /*top:35px;*/
+            left:1130px;
+            top:260px;
+        }
+        
+        #suelo{
+            background-image: url("capa.jpg");
+            z-index: -1;
+            position: absolute;
+            width: 1090px;
+            height: 590px;
+        }
+		
+		#titulo {
+			position: absolute;
+            top:600px;
+            left:300px;
+            font-family: "Super Mario Bros.",sans-serif;
+            font-size: 40px;
+			font-weight: bolder;
+		}
+
+        .pared{
+            background-image: url("imagenes/borde.png");
+        }
+        
+        .mensajeGanar{
+            font-family: "Super Mario Bros.",sans-serif;
+            position:absolute;
+            color: white;
+            top:200px;
+            left:-200px;
+        }
+        .ganastes1{
+            color:red;
+            font-size: 100px;
+            left:400px;
+            top:200px
+        }
+        .ganastes2{
+            color:blue;
+            font-size: 100px;
+            left:400px;
+            top:-200px
+        }
+        .mensajeMuerte{
+            font-family: "Super Mario Bros.",sans-serif;
+            position:absolute;
+            color: white;
+            top:-200px;
+            left:400px;
+        }
+        .muerte1{
+            top:200px
+        }
+        .muerte2{
+            color:red;
+            font-size: 100px;
+        }
+
+        #puntos{
+            position: absolute;
+            font-family: "Super Mario Bros.",sans-serif;
+            width: 15%;
+            height: 15%;
+            left:1100px;
+            top:370px;
+            font-size: 1.7em;
+        }
+
+        #llaveCogida{
+            position: absolute;
+            width: 15%;
+            height: 10%;
+            left:1130px;
+            top:460px;
+            border: 3px solid black;
+
+        }
+
+        #llave, #llave2, #llave3{
+            width: 50px;
+            height: 50px;
+            top: 320px;
+            left: 1040px;
+            position: absolute;
+        }
+
+        #llave{
+            top: 60px;
+            left: 990px;
+        }
+
+        #llave2{
+            top: 320px;
+            left: 1040px;
+        }
+
+        #llave3{
+            top: 420px;
+            left: 300px;
+        }
+
+        #CuentaAtras{
+            width: 92px;
+            height: 64px; 
+            float: right;
+            font-family: "Super Mario Bros.",sans-serif;
+            font-weight: bolder;
+            font-size: 1.2em;
+            margin-right: 3%;
+            margin-top: 10%;
+            text-align: center;
+            color: rgba(255, 0, 0, 0.74);
+        }
+    </style>
+
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="mario.mp3" type="audio/mpeg">
+    </audio>
+    <div id="suelo"></div>
+    <div id="paredArriba" class="pared"></div>
+    <div id="paredAbajo" class="pared"></div>
+    <div id="paredIzquierda" class="pared"></div>
+    <div id="paredDerecha" class="pared"></div>
+    <div id="obstaculo1" class="pared"></div>
+    <div id="obstaculo2" class="pared"></div>
+    <div id="obstaculo3" class="pared"></div>
+    <div id="obstaculo4"></div>
+    <div id="obstaculo5"></div>
+    <div id="obstaculo6"></div>
+
+    <div id="salida"></div>
+    <div id="paredSalida"></div>
+    <div id="paredDerechaSalida"></div>
+
+    <div id="heart1" class="hearts"></div>
+    <div id="heart2" class="hearts"></div>
+    <div id="heart3" class="hearts"></div>
+    <div id="heart4" class="hearts"></div>
+	
+    <div id="puntos" class="puntos"></div>
+    
+    <div id="llave" class="llave"></div>
+    <div id="llave2" class="llave"></div>
+    <div id="llave3" class="llave"></div>
+    <div id="llaveCogida" class="llaveCogida"></div>
+
+    <div id="pj"></div>
+
+    <p id='CuentaAtras'></p>
+
+    <div id="enemigo" class="enemigos"></div>
+    <div id="enemigo2" class="enemigos"></div>
+    <div id="enemigo3" class="enemigos"></div>
+    <div id="enemigo4" class="enemigos"></div>
+    <div id="enemigo5" class="enemigos"></div>
+    <div id="enemigo6" class="enemigos"></div>
+    <div id="enemigo7" class="enemigos"></div>
+
+    <div id="textoSalida">SALIDA</div>
+	
+	<div id="titulo"><img src="imagenes/mario.png" height="40" width="40">Mario contra todos<img src="imagenes/mario.png" height="40" width="40">  *** Nivel 3 ***</div>
+	
+    <div id="mensajeGanar" class="mensajeGanar">!!Ganastes!!</div>
+    <div id="mensajeMuerte" class="mensajeMuerte">!!Muerte!!</div>
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+    <script src="js/colision.js"></script>
+    <script src="js/practica3.js"></script>
+</body>
+</html>

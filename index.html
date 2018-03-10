@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARIO CONTRA TODOS</title>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style type="text/css">
+      @font-face {
+          font-family:"Super Mario Bros.";
+          src: url('fuente/SuperMarioBros.ttf');
+      }
+
+      body{
+        font-family: "Super Mario Bros.",sans-serif;
+      }
+  </style>
+  <script>
+  $(document).ready(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+  
+  $( "#dialog" ).dialog("open");
+  } );
+  </script>
+</head>
+<body style="background-image: url('fondo.jpg');">
+    <audio autoplay loop>
+        <source src="mario.mp3" type="audio/mpeg">
+    </audio>
+  <p style="text-align: center; color: white; margin-top: 5%; font-size: 3em;">MARIO CONTRA TODOS</p>
+  <img src="imagenes/corazon.png" style="width: 32px; float: left;" alt="mario"><img src="imagenes/corazon.png" style="width: 32px; float: right;" alt="mario">
+  <img src="imagenes/mario.png" style="width: 250px; margin-left: 10%; float: left;" alt="mario"><img src="imagenes/mario.png" style="width: 250px; margin-right: 10%; float: right;" alt="mario">
+  <div id="dialog" title="Juguemos!">
+    <p>En este juego lucharemos contra unos malos muy malos para lograr salir de la habitación. Si pasas de nivel, te recargamos las vidas.<br> ¿Podrás pasar los 3 niveles?</p>
+    <input type="button" name="ir" value='Vamos allá!' style="margin-left: 20%;" id="ir">
+</div>
+<script type="text/javascript">
+	$('#ir').click(PasarAJuego);
+
+	function PasarAJuego()
+	{
+	   window.location.href = 'principal.html';
+	}
+</script>
+</body>
+</html>
